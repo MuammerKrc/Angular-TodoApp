@@ -1,0 +1,38 @@
+<div class="container" style="height:100vh;">
+  <div class="row mt-5">
+    <div class="col-5  mx-auto ">
+      <h4 class="bg-primary text-white p-3">{{Item.name}} Todo List</h4>
+      <div class="input-group mb-3">
+        <input #addInput type="text" class="form-control" (keyup.enter)="addItem(addInput)">
+        <button class="btn btn-outline-info text-dark" (click)="addItem(addInput)"> Add</button>
+      </div>
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="showAll" id="displayAll">
+        <label for="displayAll" class="form-check-label">Hepsini Göster</label>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let element of getItems() ;let x=index;">
+            <tr [ngClass]="{'bg-warning': element.action}">
+              <td>{{x+1}}</td>
+              <td>{{element.description}}</td>
+              <td>
+                {{element.action}}
+              </td>
+              <td>
+                <input type="checkbox" [(ngModel)]="element.action">
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
